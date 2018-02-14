@@ -2,7 +2,7 @@ Clone all the file to ~/[catkin_workspace]/src
 
 The file cantains 3 example
 
-First example
+# First example
  talker.py and listener.py files belang to the first example if you want to run this example 
  
  1. first you need to clone in you machine
@@ -19,7 +19,7 @@ First example
  
  5. Running the Publisher (open new terminal)
   catkin specific If you are using catkin, make sure you have sourced your workspace's setup.sh file after calling catkin_make but  before trying to use your applications: 
- # In your catkin workspace
+ In your catkin workspace
 $ cd ~/catkin_ws
 $ source ./devel/setup.bash
  
@@ -32,7 +32,7 @@ $ rosrun beginner_tutorials listener     (C++)
 $ rosrun beginner_tutorials listener.py  (Python) 
  
  
- Second Example (Move Turtlebot in Gazebo world)
+ # Second Example (Move Turtlebot in Gazebo world)
  after clone the [turtlebot] folder  to ~/your catkin_workspace/src
  1. launch turtlebot in gazebo world by typing following cmd n terminal 
    $ roslaunch turtlebot_gazebo turtlebot_world.launch
@@ -40,4 +40,4 @@ $ rosrun beginner_tutorials listener.py  (Python)
     $ cd ~/catkin_ws/src/turtlebot/scripts
     $ python goforward.py
     pythone
- 
+ see turtlebot is moving
