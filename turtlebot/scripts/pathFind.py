@@ -174,8 +174,7 @@ def reconstruct_path(came_from, start, goal):
     while current != start:
         path.append(current)
         current = came_from[current]
-
-        if (current[0] == firstLast[0] and current[1] != firstLast[1]):
+        #if (current[0] == firstLast[0] and current[1] != firstLast[1]):
             #if x here is the same as x in firstlast, while y is not..
             #we are going to this direction
                 #1 and 1  = y isnt moving (1,1), (2,1), (3,1) etc
@@ -202,8 +201,8 @@ def reconstruct_path(came_from, start, goal):
 
 
 
-            if (direction == firstLastDirection):
-                diagonal = False
+        if (direction == firstLastDirection):
+            diagonal = False
 
 
         print ("Direction is")
@@ -215,9 +214,12 @@ def reconstruct_path(came_from, start, goal):
         firstLast = current
         secondLast = firstLast
 
+
+    cornerList.reverse()
     print(cornerList)
     path.append(start) # optional
     #path.reverse() # optional
+    #return cornerList
     return path
 
 def heuristic(a, b):
@@ -265,7 +267,7 @@ def main():
     loader = mapLoader()
     print(loader)
     currentModels = loader.pathFindJereSolution
-    print (currentModels)
+
     TEST_WALLS = [from_id_width(id, width=30) for id in [21,22,51,52,81,82,93,94,111,112,123,124,133,134,141,142,153,154,163,164,171,172,173,174,175,183,184,193,194,201,202,203,204,205,213,214,223,224,243,244,253,254,273,274,283,284,303,304,313,314,333,334,343,344,373,374,403,404,433,434]]
     TEST_WALLS.append((33,2))
     graph = SquareGrid(50,50)
@@ -273,11 +275,12 @@ def main():
 
     goal = "(30,15)"
     #tupleGoal = literal
-    print(eval(goal))
+    #print(eval(goal))
     test = a_star_search(graph, (1,1), eval(goal))
     #test = a_star_search(graph, (1,1), (40,25))
     aa = test
-    print (aa)
+    #print (aa)
+    print (currentModels)
     graph.road = aa
 
 main()
