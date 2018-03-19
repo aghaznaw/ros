@@ -265,7 +265,7 @@ def main():
     graph.walls = TEST_WALLS # long list, [(21, 0), (21, 2), ...]
 
     #graph = diagram4
-    goal = input("Please enter the ending goal")
+    goal = input("Please enter the ending goal: ")
     #tupleGoal = literal
     print(eval(goal))
     test = a_star_search(graph, (1,1), eval(goal))
