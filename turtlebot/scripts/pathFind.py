@@ -16,7 +16,6 @@ class getGazeboMap:
 
 
 class GazeboGraph:
-    #gazeboMap =
     all_nodes = []
     for x in range(50):
         for y in range(50):
@@ -125,16 +124,6 @@ import heapq
 class mapLoader:
     def __init__(self):
         self.elements = collections.deque()
-
-    #def empty(self):
-    #    return len(self.elements) == 0
-
-    #def put(self, x):
-    #    self.elements.append(x)
-
-    #def get(self):
-        #return self.elements.popleft()
-
     def pathFindJereSolution():
         file_dir = os.path.dirname(__file__)
         print("I am here")
@@ -144,10 +133,6 @@ class mapLoader:
         modelList = []
         strings = ("model name=")
         print(file_path)
-    	#path = ""
-
-    	#priorityNodes = [[], []]
-
         with open(file_path) as f:
             print(f)
             for line in f:
@@ -179,6 +164,13 @@ def reconstruct_path(came_from, start, goal):
     firstLast = goal
     secondLast = firstLast
     direction = ""
+    upDown = ""
+    leftRight = ""
+    curDirection =""
+    diagonal = False
+    cornerList = []
+    firstLastDirection = ""
+    secondLastDirection = ""
     while current != start:
         path.append(current)
         current = came_from[current]
@@ -186,36 +178,52 @@ def reconstruct_path(came_from, start, goal):
         if (current[0] == firstLast[0] and current[1] != firstLast[1]):
             #if x here is the same as x in firstlast, while y is not..
             #we are going to this direction
-            if (current[0] != secondLast[0]):
-                direction = "downRight"
-                print("Going diagonally down at ")
-                print(current)
-            else:
-                print("Going down at ")
-                print(current)
-                direction = "down"
-        if (current[1] == firstLast[1] and current[0] != firstLast[0]):
-            if (current[1] != secondLast[1] and current[0] == secondLast[0]):
-                direction = "rightUp"
-                print("Going diagonally right at ")
-                print(current)
-            else:
-                print("Going right at ")
-                print(current)
-                direction = "right"
+                #1 and 1  = y isnt moving (1,1), (2,1), (3,1) etc
+                #0 and 0 = x isnt moving
+
+        if (current[1] == firstLast[1]):
+            #We are going either left or right
+            direction = "right"
+            if (direction != secondLastDirection and diagonal == False):
+                #IF we were going to the same way on the secondLast...
+                print("Going downright")
+                cornerList.append(secondLast)
+            #else:
+                #We are going "right"
+                #leftRight = "right"
+        if (current[0] == firstLast[0]):
+            #We are going either up or down
+            #if current
+            direction = "down"
+            if (direction != secondLastDirection and diagonal == False):
+
+                cornerList.append(secondLast)
+                diagonal = True
+
+
+
+            if (direction == firstLastDirection):
+                diagonal = False
+
+
+        print ("Direction is")
+        print (direction)
+        print(leftRight)
+        secondLastDirection = firstLastDirection
+        firstLastDirection = direction
+        direction = ""
         firstLast = current
         secondLast = firstLast
-        #if ((current[0] != secondLast[0] and current[1] != )  or current[1] != secondLast[1])):
-        #    print("Found a corner at")
-        #    print(current)
+
+    print(cornerList)
     path.append(start) # optional
-    path.reverse() # optional
+    #path.reverse() # optional
     return path
 
 def heuristic(a, b):
 
     #return abs(a[0] - b[0]) + abs(a[1] - b[1]) manhattan
-    return math.sqrt(((a[0] - b[0])**2) + ((a[1] - b[1])**2)) #euclidean
+    return math.sqrt(((a[0] - b[0])**2) + ((a[1] - b[1])**2)) #euclidean distance (not limited to grid, can traverse diagonally)
 
 def a_star_search(graph, start, goal):
     frontier = PriorityQueue()
@@ -238,7 +246,7 @@ def a_star_search(graph, start, goal):
             break
 
         for next in graph.neighbors(current):
-            new_cost = cost_so_far[current]# + graph.cost(current, next)
+            new_cost = cost_so_far[current]
 
             if next not in cost_so_far or new_cost < cost_so_far[next]:
 
@@ -260,12 +268,10 @@ def main():
     print (currentModels)
     TEST_WALLS = [from_id_width(id, width=30) for id in [21,22,51,52,81,82,93,94,111,112,123,124,133,134,141,142,153,154,163,164,171,172,173,174,175,183,184,193,194,201,202,203,204,205,213,214,223,224,243,244,253,254,273,274,283,284,303,304,313,314,333,334,343,344,373,374,403,404,433,434]]
     TEST_WALLS.append((33,2))
-    #graph = GazeboGraph
     graph = SquareGrid(50,50)
     graph.walls = TEST_WALLS # long list, [(21, 0), (21, 2), ...]
 
-    #graph = diagram4
-    goal = input("Please enter the ending goal: ")
+    goal = "(30,15)"
     #tupleGoal = literal
     print(eval(goal))
     test = a_star_search(graph, (1,1), eval(goal))
