@@ -192,18 +192,14 @@ def reconstruct_path(came_from, start, goal):
                 #leftRight = "right"
         if (current[0] == firstLast[0]):
             #We are going either up or down
-            #if current
             direction = "down"
             if (direction != secondLastDirection and diagonal == False):
 
                 cornerList.append(secondLast)
                 diagonal = True
 
-
-
         if (direction == firstLastDirection):
             diagonal = False
-
 
         print ("Direction is")
         print (direction)
@@ -214,14 +210,15 @@ def reconstruct_path(came_from, start, goal):
         firstLast = current
         secondLast = firstLast
 
-
     cornerList.reverse()
     print(cornerList)
     path.append(start) # optional
     #path.reverse() # optional
-    #return cornerList
-    return path
+    return cornerList #returns the corners the path has
+    #return path #returns the path the algorithm takes
 
+#def obstacleSizeConverter(obstacle):
+#    if obstacle.size =
 def heuristic(a, b):
 
     #return abs(a[0] - b[0]) + abs(a[1] - b[1]) manhattan
@@ -259,8 +256,30 @@ def a_star_search(graph, start, goal):
                 came_from[next] = current
 
     print("This is the path: ")
-    print(reconstruct_path(came_from, start=(1,1), goal=(goal)))
-    draw_grid(graph, width=2, path=reconstruct_path(came_from, start=(1,1), goal=(goal)))
+    print(reconstruct_path(came_from, start=(start), goal=(goal)))
+    draw_grid(graph, width=2, path=reconstruct_path(came_from, start=(start), goal=(goal)))
+    listOfGoals = reconstruct_path(came_from, start=(start), goal=(goal))
+    goalArray = []
+    goalArray.append([])
+    foo = 0
+    for goalTuple in listOfGoals:
+
+
+        x, y = goalTuple
+        if x < 50:
+            x = x * -1
+        if x > 50:
+            x = x - 50
+        goalArray[foo][0] = x
+
+        if y < 50:
+            y = y * -1
+        if y > 50:
+            y = y - 50
+        goalArray[foo][1] = y
+        foo = foo + 1
+
+    print(goalArray)
     return came_from, cost_so_far
 def main():
 
@@ -270,13 +289,20 @@ def main():
 
     TEST_WALLS = [from_id_width(id, width=30) for id in [21,22,51,52,81,82,93,94,111,112,123,124,133,134,141,142,153,154,163,164,171,172,173,174,175,183,184,193,194,201,202,203,204,205,213,214,223,224,243,244,253,254,273,274,283,284,303,304,313,314,333,334,343,344,373,374,403,404,433,434]]
     TEST_WALLS.append((33,2))
-    graph = SquareGrid(50,50)
-    graph.walls = TEST_WALLS # long list, [(21, 0), (21, 2), ...]
 
-    goal = "(30,15)"
+    OBJECT_WALLS = [(1,2), (1,3), (55, 49), (4, 22), (5,22), (3,22), (2,22), (1,22)] #[from_id_width(id, width=5) for
+    #graph = #gazebo map is default -10.0m * 10.0m
+    #if (xLoc < 0)
+    #    xLoc = xLoc * -1
+    #if (yLoc < 0)
+    #    yLoc = yLoc * -1
+    graph = SquareGrid(100,100)
+    graph.walls = OBJECT_WALLS #TEST_WALLS # long list, [(21, 0), (21, 2), ...]
+    start = "(30,30)"
+    goal = "(30,80)"
     #tupleGoal = literal
     #print(eval(goal))
-    test = a_star_search(graph, (1,1), eval(goal))
+    test = a_star_search(graph, eval(start), eval(goal))
     #test = a_star_search(graph, (1,1), (40,25))
     aa = test
     #print (aa)
