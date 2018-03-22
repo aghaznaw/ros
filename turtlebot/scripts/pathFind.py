@@ -10,6 +10,7 @@ class getGazeboMap:
         #z tells us the height of the model, so if it is +, there is a block
         test = test.map
         staticObjects = test.getStatics()
+
         writeMap = test.getMapSize()
         combineMap(writeMap, staticObjects)
         return loadedMap
@@ -259,8 +260,11 @@ def a_star_search(graph, start, goal):
     print(reconstruct_path(came_from, start=(start), goal=(goal)))
     draw_grid(graph, width=2, path=reconstruct_path(came_from, start=(start), goal=(goal)))
     listOfGoals = reconstruct_path(came_from, start=(start), goal=(goal))
-    goalArray = []
-    goalArray.append([])
+    w, h = 2, len(listOfGoals)
+
+    goalArray = [[0 for x in range(w)] for y in range(h)]
+    print(goalArray)
+    #goalArray.append([])
     foo = 0
     for goalTuple in listOfGoals:
 
@@ -270,12 +274,14 @@ def a_star_search(graph, start, goal):
             x = x * -1
         if x > 50:
             x = x - 50
+            x = float(x / 10.0)
         goalArray[foo][0] = x
 
         if y < 50:
             y = y * -1
         if y > 50:
             y = y - 50
+            y = float(y / 10.0)
         goalArray[foo][1] = y
         foo = foo + 1
 
@@ -298,8 +304,8 @@ def main():
     #    yLoc = yLoc * -1
     graph = SquareGrid(100,100)
     graph.walls = OBJECT_WALLS #TEST_WALLS # long list, [(21, 0), (21, 2), ...]
-    start = "(30,30)"
-    goal = "(30,80)"
+    start = "(1,1)"
+    goal = "(99,99)"
     #tupleGoal = literal
     #print(eval(goal))
     test = a_star_search(graph, eval(start), eval(goal))
