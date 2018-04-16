@@ -8,8 +8,9 @@ class getGazeboMap:
     def loadMap(name):
         #Map info is in format: (x, y, z, r, p, y). The first two are the most important
         #z tells us the height of the model, so if it is +, there is a block
-        test = test.map
-        staticObjects = test.getStatics()
+
+
+
 
         writeMap = test.getMapSize()
         combineMap(writeMap, staticObjects)
@@ -125,26 +126,7 @@ import heapq
 class mapLoader:
     def __init__(self):
         self.elements = collections.deque()
-    def pathFindJereSolution():
-        file_dir = os.path.dirname(__file__)
-        print("I am here")
-        #rel_path =
-        file_subdir = "test.txt"
-        file_path = os.path.join(file_dir, file_subdir)
-        modelList = []
-        strings = ("model name=")
-        print(file_path)
-        with open(file_path) as f:
-            print(f)
-            for line in f:
-                if any(l in line for s in strings):
-                    modelList.add(line)
-                    print ("new model found")
-                    #if any(l in line for "static=")
-                    #    print("Model resides at the map in location:")
 
-                    print (line)
-        return modelList
 
 class PriorityQueue:
     def __init__(self):
@@ -220,11 +202,81 @@ def reconstruct_path(came_from, start, goal):
 
 #def obstacleSizeConverter(obstacle):
 #    if obstacle.size =
+def translateModel(modelList):
+    test = modelList
+    staticObjects = test.getStatics()
+    for model in test:
+        for i in model.position:
+            model.position[i] = model.position[i] * 1000
+            #print model.position[i]
+
 def heuristic(a, b):
 
     #return abs(a[0] - b[0]) + abs(a[1] - b[1]) manhattan
     return math.sqrt(((a[0] - b[0])**2) + ((a[1] - b[1])**2)) #euclidean distance (not limited to grid, can traverse diagonally)
+def pathFindJereSolution():
+    #file_dir = os.path.dirname(__file__)
 
+    print("I am here")
+    #rel_path =
+    file_subdir = "test.txt"
+    #file_path = os.path.join(file_dir, file_subdir)
+    file_path = ("test.txt")
+    modelList = []
+    strings = ("model name=")
+    print("File path: ")
+    poseList = []
+    print(file_path)
+    with open(file_path) as f:
+        xmlLines = f.readlines()
+        #lines = f.readlines()
+        #i = 0
+        for i in range(len(xmlLines)):
+
+            #print (line)
+            #if any(l in line for s in strings):
+            #    modelList.add(line)
+            #    print ("new model found")
+                #if any(l in line for "static=")
+                #    print("Model resides at the map in location:")
+            #if "model name=" in xmlLines[i]:
+            if "<static>1</static>" in xmlLines[i]:
+                print(xmlLines[i])
+                print(i)
+                old_integer = i
+                    #<pose> x y z roll pitch yaw </pose>
+                while ("</model>" not in xmlLines[i]):
+                    if "<size>" in xmlLines[i]:
+                        print (xmlLines[i])
+                    if "<pose frame=" in xmlLines[i]:
+                        print(xmlLines[i])
+                        poseList.append(xmlLines[i])
+
+                    i = i + 1
+
+
+                    #print(xmlLines[i])
+
+
+
+                i = old_integer
+
+                print ("xmlLines: ",xmlLines[i])
+                print ("poseList: ",poseList)
+                #while ("/model" not in line):
+                    #print (line
+            i = i + 1
+
+    return modelList
+def modelToCoords(modelList):
+    #newList = list(map(int, modelList.split()))
+    newList = []
+    modelDimensions = list(map(float, modelList.split()))
+    print (modelDimensions)
+    for item in modelList:
+        convertedItem = item
+        newList.append(modelDimensions)
+    return newList
 def a_star_search(graph, start, goal):
     frontier = PriorityQueue()
     frontier.put(start, 0)
@@ -291,7 +343,7 @@ def main():
 
     loader = mapLoader()
     print(loader)
-    currentModels = loader.pathFindJereSolution
+
 
     TEST_WALLS = [from_id_width(id, width=30) for id in [21,22,51,52,81,82,93,94,111,112,123,124,133,134,141,142,153,154,163,164,171,172,173,174,175,183,184,193,194,201,202,203,204,205,213,214,223,224,243,244,253,254,273,274,283,284,303,304,313,314,333,334,343,344,373,374,403,404,433,434]]
     TEST_WALLS.append((33,2))
@@ -312,7 +364,11 @@ def main():
     #test = a_star_search(graph, (1,1), (40,25))
     aa = test
     #print (aa)
-    print (currentModels)
+
     graph.road = aa
+    print("loader:")
+    pathFindJereSolution()
+    modelToCoords("1.41131 -1 0")
+
 
 main()
