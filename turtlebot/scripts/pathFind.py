@@ -1,6 +1,5 @@
-# Sample code from https://www.redblobgames.com/pathfinding/a-star/
-# Copyright 2014 Red Blob Games <redblobgames@gmail.com>
-#
+# Base structure of code by 2014 Red Blob Games <redblobgames@gmail.com>
+# Heuristics and base solution for static map reading by Jere Mourujärvi
 # Feel free to use this code in your own projects, including commercial projects
 # License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 import math
@@ -56,7 +55,7 @@ class Queue:
 def from_id_width(id, width):
     return (id % width, id // width)
 
-def draw_tile(graph, id, style, width):
+def draw_tile(graph, id, style, width): # Copyright 2014 Red Blob Games <redblobgames@gmail.com>
 
     r = "."
     if 'number' in style and id in style['number']: r = "%d" % style['number'][id]
@@ -216,8 +215,6 @@ def heuristic(a, b):
     return math.sqrt(((a[0] - b[0])**2) + ((a[1] - b[1])**2)) #euclidean distance (not limited to grid, can traverse diagonally)
 def pathFindJereSolution():
     #file_dir = os.path.dirname(__file__)
-
-    print("I am here")
     #rel_path =
     file_subdir = "test.txt"
     #file_path = os.path.join(file_dir, file_subdir)
@@ -253,11 +250,6 @@ def pathFindJereSolution():
                         poseList.append(xmlLines[i])
 
                     i = i + 1
-
-
-                    #print(xmlLines[i])
-
-
 
                 i = old_integer
 
@@ -368,7 +360,7 @@ def main():
     graph.road = aa
     print("loader:")
     pathFindJereSolution()
-    modelToCoords("1.41131 -1 0")
+    modelToCoords("1.41131 -1 0") 
 
 
 main()
