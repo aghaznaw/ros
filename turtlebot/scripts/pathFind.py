@@ -1,5 +1,5 @@
 # Base structure of code by 2014 Red Blob Games <redblobgames@gmail.com>
-# Heuristics and base solution for static map reading by Jere Mourujärvi
+# Heuristics and base solution for static map reading by Jere Mourujärvi 2018
 # Feel free to use this code in your own projects, including commercial projects
 # License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 import math
@@ -332,35 +332,47 @@ def a_star_search(graph, start, goal):
     print(goalArray)
     return came_from, cost_so_far
 def main():
+    while True:
+        print("ROS Turtlebot3 pathfinding utility\n")
+        commVal = input("Please select a command\n1. Run map loader\n2. Calculate path in the current world\n3. Exit application\n")
+        if commVal == '1':
+            loader = mapLoader()
+            print("Reading robot location from the Gazebo...")
+            location = "(1,1)" #readFromGazeb()
 
-    loader = mapLoader()
-    print(loader)
+            print("Robot location is ", location)
+            #save the location to file
+            saveFile = open("locFile.txt", "w")
+            saveFile.write(location)
+            saveFile.close()
+            print(loader)
+        if commVal == '2':
+            locFile = open("locFile.txt","r")
+            location = locFile.read()
+            print(locFile.read())
 
+            TEST_WALLS = [from_id_width(id, width=30) for id in [21,22,51,52,81,82,93,94,111,112,123,124,133,134,141,142,153,154,163,164,171,172,173,174,175,183,184,193,194,201,202,203,204,205,213,214,223,224,243,244,253,254,273,274,283,284,303,304,313,314,333,334,343,344,373,374,403,404,433,434]]
+            TEST_WALLS.append((33,2))
 
-    TEST_WALLS = [from_id_width(id, width=30) for id in [21,22,51,52,81,82,93,94,111,112,123,124,133,134,141,142,153,154,163,164,171,172,173,174,175,183,184,193,194,201,202,203,204,205,213,214,223,224,243,244,253,254,273,274,283,284,303,304,313,314,333,334,343,344,373,374,403,404,433,434]]
-    TEST_WALLS.append((33,2))
+            OBJECT_WALLS = [(1,2), (1,3), (55, 49), (4, 22), (5,22), (3,22), (2,22), (1,22)] #[from_id_width(id, width=5) for
+            #graph = #gazebo map is default -10.0m * 10.0m
 
-    OBJECT_WALLS = [(1,2), (1,3), (55, 49), (4, 22), (5,22), (3,22), (2,22), (1,22)] #[from_id_width(id, width=5) for
-    #graph = #gazebo map is default -10.0m * 10.0m
-    #if (xLoc < 0)
-    #    xLoc = xLoc * -1
-    #if (yLoc < 0)
-    #    yLoc = yLoc * -1
-    graph = SquareGrid(100,100)
-    graph.walls = OBJECT_WALLS #TEST_WALLS # long list, [(21, 0), (21, 2), ...]
-    start = "(1,1)"
-    goal = "(99,99)"
-    #tupleGoal = literal
-    #print(eval(goal))
-    test = a_star_search(graph, eval(start), eval(goal))
-    #test = a_star_search(graph, (1,1), (40,25))
-    aa = test
-    #print (aa)
+            graph = SquareGrid(100,100)
+            graph.walls = OBJECT_WALLS #TEST_WALLS # long list, [(21, 0), (21, 2), ...]
+            start = "(1,1)"
+            goal = "(99,99)"
+            test = a_star_search(graph, eval(location), eval(goal))
+            #test = a_star_search(graph, (1,1), (40,25))
+            aa = test
+            #print (aa)
 
-    graph.road = aa
-    print("loader:")
-    pathFindJereSolution()
-    modelToCoords("1.41131 -1 0") 
+            graph.road = aa
+            #print("loader:")
+            #pathFindJereSolution()
+            modelToCoords("1.41131 -1 0")
 
-
+        elif commVal == '3':
+            break;
+        else:
+            print("Invalid command")
 main()
