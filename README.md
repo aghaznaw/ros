@@ -1,3 +1,18 @@
+# About
+The aim of the project is to design and implement an  pathfinding algorithm to be used with the turtlebot 3 -robot. The implemented algorithm is set to be run on a simulated environment, which is ran on a computer running ubuntu and the ROS operating system.
+
+# Installation 
+In order to run this software you need to install the following softwares
+- Ubuntu 16.04
+- ROS (Kinetic distribution)
+- Gazebo simulator 
+- Turtlebot 3 packages on ROS Kinetic
+
+# Final Delivery (FinalRelease)
+This repository contains all the examples which the Team D have done during the Software Factory Project Course, in order to review the Final release of the project, please go to /ROS/FinalRelease  folder and take a look at readMe.txt file.
+
+# Team D
+this section is belong to the Team memebers.
 Clone all the file to ~/[catkin_workspace]/src
 
 The file cantains 3 example
