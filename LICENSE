@@ -1,6 +1,6 @@
 BSD 2-Clause License
 
-Copyright (c) 2018, Andrew,Jere,and Ahmad
+Copyright (c) 2018, Andrew, Jere,and Ahmad
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -24,7 +24,7 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-Also some parts of the code was taken from the following soure, if you want to this software you must not remove these links and Coppyrights 
+Also some parts of the code were taken from the following sources. If you want to use this software, you must not remove these links and Copyrights :
 #################################################################################
 # Sample code from https://www.redblobgames.com/pathfinding/a-star/
 # Copyright 2014 Red Blob Games <redblobgames@gmail.com>
