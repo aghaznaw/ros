@@ -1,5 +1,5 @@
 # About
-The aim of the project is to design and implement an  pathfinding algorithm to be used with the turtlebot 3 -robot. The implemented algorithm is set to be run on a simulated environment, which is ran on a computer running ubuntu and the ROS operating system.
+The aim of the project is to design and implement an  pathfinding algorithm to be used with the turtlebot 3 -robot. The implemented algorithm is set to be ran on a simulated environment, which is ran on a computer running ubuntu and the ROS operating system. it is a student project belong to the Software Factory Project course of Oulu University.
 
 # Installation 
 In order to run this software you need to install the following softwares
