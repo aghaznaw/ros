@@ -1,4 +1,3 @@
-# Base structure of code by 2014 Red Blob Games <redblobgames@gmail.com>
 # Heuristics and base solution for static map reading by Jere Mourujärvi 2018
 # Feel free to use this code in your own projects, including commercial projects
 # License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
@@ -7,9 +6,6 @@ class getGazeboMap:
     def loadMap(name):
         #Map info is in format: (x, y, z, r, p, y). The first two are the most important
         #z tells us the height of the model, so if it is +, there is a block
-
-
-
 
         writeMap = test.getMapSize()
         combineMap(writeMap, staticObjects)
@@ -55,8 +51,7 @@ class Queue:
 def from_id_width(id, width):
     return (id % width, id // width)
 
-def draw_tile(graph, id, style, width): # Copyright 2014 Red Blob Games <redblobgames@gmail.com>
-
+def draw_tile(graph, id, style, width):
     r = "."
     if 'number' in style and id in style['number']: r = "%d" % style['number'][id]
     if 'point_to' in style and style['point_to'].get(id, None) is not None:
