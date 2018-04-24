@@ -1,5 +1,5 @@
 # About
-The aim of the project is to design and implement an  pathfinding algorithm to be used with the turtlebot 3 -robot. The implemented algorithm is set to be ran on a simulated environment, which is ran on a computer running ubuntu and the ROS operating system. it is a student project belong to the Software Factory Project course of Oulu University.
+The aim of the project is to design and implement an  pathfinding algorithm to be used with the turtlebot 3 -robot. The implemented algorithm is set to be ran on a simulated environment, which is ran on a computer running ubuntu and the ROS operating system. it is a student project belonging to the Software Factory Project course of Oulu University.
 
 # Instalation 
 In order to run this software you need to install the following softwares
@@ -15,7 +15,7 @@ In order to run this software you need to install the following softwares
    Set Turtlebot 3 model to burber and start Gazebo 
   -export TURTELBOT3_MODEL=burger
   -roslaunch turtlebot3_gazebo turtlebot3_world.launch
-   nevegate into script folder and ran the following nodes
+   navigate into script folder and run the following nodes
   -python get_loc.py
   -python pathplanner.py
   -rosrun [your package name] controller.py
