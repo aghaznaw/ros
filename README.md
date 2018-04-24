@@ -12,17 +12,17 @@ In order to run this software you need to install the following softwares
 This repository contains all the examples which the Team D have done during the Software Factory Project Course, in order to review the Final release of the project, please go to /ROS/FinalRelease  folder and take a look at readMe.txt file.
 
 # Team D
-this section is belong to the Team memebers.
+this section belongs to the Team members.
 Clone all the file to ~/[catkin_workspace]/src
 
-The file cantains 3 example
+This repo contain multiple examples on how to carry out the pathfinding task.
 
 # First example
- talker.py and listener.py files belang to the first example if you want to run this example 
+ talker.py and listener.py files belong to the first example if you want to run this example 
  
  1. first you need to clone in you machine
  
- 2. make the filse executable using linux cmd 
+ 2. make the files executable using linux cmd 
    chmod +x talker.py
    chmod +x listener.py
    
