@@ -174,9 +174,6 @@ class PathFollower():
 
 
 	def setPath(self):
-		#path = [[-2.5, 2.8], [1.7, 2.8], [1.7, -1.3], [6, -1.3]]
-		#path = [[1.7, -1.3], [1.7, 2.8], [-2.5, 2.8], [-2.5, -0.5]]
-		path =[[0.0, 1.4], [-0.3, 1.4], [-0.4, 1.4], [-1.0, -2.0]]
 
 		lineNum = sum(1 for line in open('PathArray.txt'))
 
